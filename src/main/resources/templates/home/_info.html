@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security</title>
+</head>
+
+<body>
+    <main>
+        <div sec:authorize="!isAuthenticated()">You need login.</div>
+        <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasRole('USER')">Text visible to USER.</div>
+            <div sec:authorize="hasRole('ADMIN')">Text visible to ADMIN.</div>
+            Authenticated username:
+            <b>
+                <div>Name: <span style="color: blue;">[[${#authentication.name}]]</span></div>
+                <div sec:authentication="authorities"></div>
+            </b>
+        </div>
+    </main>
+</body>
+
+</html>
